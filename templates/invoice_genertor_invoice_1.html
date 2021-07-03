@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+<meta charset="UTF-8">
+  {% load static %}
+
+<link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+  
+
+  <title>Invoice 1 - Confep</title>
+  
+  
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/paper-css/0.4.1/paper.min.css'>
+  
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+:root {
+  --primary-color: #f5826e;  
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 0.5px;
+}
+
+.invoice-card {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  padding: 10px 2em;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-height: 25em;
+  width: 22em;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 10px 30px 5px rgba(0, 0, 0, 0.15);
+}
+
+.invoice-card > div {
+  margin: 5px 0;
+}
+
+.invoice-title {
+  flex: 3;
+}
+
+.invoice-title #date {
+  display: block;
+  margin: 8px 0;
+  font-size: 12px;
+}
+
+.invoice-title #main-title {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2em;
+}
+
+.invoice-title #main-title h4 {
+  letter-spacing: 2.5px;
+}
+
+.invoice-title span {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.invoice-details {
+  flex: 1;
+  border-top: 0.5px dashed grey;
+  border-bottom: 0.5px dashed grey;
+  display: flex;
+  align-items: center;
+}
+
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.invoice-table thead tr td {
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: grey;
+  padding: 8px 0;
+}
+
+.invoice-table thead tr td:nth-last-child(1),
+.row-data td:nth-last-child(1),
+.calc-row td:nth-last-child(1)
+{
+  text-align: right;
+}
+
+.invoice-table tbody tr td {
+    padding: 8px 0;
+    letter-spacing: 0;
+}
+
+.invoice-table .row-data #unit {
+  text-align: center;
+}
+
+.invoice-table .row-data span {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.invoice-footer {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.invoice-footer #later {
+  margin-right: 5px;
+}
+
+.btn {
+  border: none;
+  padding: 5px 0px;
+  background: none;
+  cursor: pointer;
+  letter-spacing: 1px;
+  outline: none;
+}
+
+.btn.btn-secondary {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.btn.btn-primary {
+  color: var(--primary-color);
+}
+
+.btn#later {
+  margin-right: 2em;
+}
+
+@media print {
+  body {
+    min-width: initial !important;
+  }
+  .btn-print {
+    display: none;
+  }
+}
+
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+</head>
+
+<body translate="no" >
+  <html>
+  <head></head>
+  <body class="A4">
+<div class="invoice-card">
+  <div class="invoice-title">
+    <div id="main-title">
+      <h4>INVOICE</h4>
+      <button class="btn btn-print btn-sm btn-light" onClick="handlePrint()">
+        <i class="fa fa-print"></i>
+        Print
+      </button>        
+      <div>{{ svg|safe }}</div>
+    </div>
+    <span>{{invoice_date}}</span><br>
+    {% if invoice_number %}
+    <span>#{{invoice_number}}</span>
+    {% endif %}
+  </div>
+  
+  <div class="invoice-details">
+    <table class="invoice-table">
+      <thead>
+        <tr>
+          <td>PRODUCT</td>
+          <td>UNIT</td>
+          <td>RATE</td>
+          <td>PRICE</td>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <tr class="row-data">
+          <td>{{product_1}}</td>
+          <td >{{quantity_1}}</td>
+          <td >{{currency}} {{rate_1}}</td>
+          <td> {{currency}} {{amount_1}}</td>
+        </tr>
+        
+        {% if amount_2  %}
+        <tr class="row-data">
+          <td>{{product_2}}</td>
+          <td >{{quantity_2}}</td>
+          <td >{{currency}} {{rate_2}}</td>
+          <td> {{currency}} {{amount_2}}</td>
+        </tr>
+        {% endif %}
+        
+        {% if amount_3  %}
+        <tr class="row-data">
+          <td>{{product_3}}</td>
+          <td >{{quantity_3}}</td>
+          <td >{{currency}} {{rate_3}}</td>
+          <td> {{currency}} {{amount_3}}</td>
+        </tr>
+        {% endif %}
+
+        <tr class="row-data">
+          <td>Total</td>
+          <td></td>
+          <td></td>
+          <td>{{currency}} {{result}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="invoice-footer">
+    {% if payment != 'not' %}
+    <button class="btn btn-primary">{{payment}}</button>
+    {% endif %}
+  </div>
+</div>  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-8216c69d01441f36c0ea791ae2d4469f0f8ff5326f00ae2d00e4bb7d20e24edb.js"></script>
+
+  
+      <script id="rendered-js" >
+const handlePrint = () => window.print();
+//# sourceURL=pen.js
+    </script>
+
+
+</body>
+
+</html>
+ 

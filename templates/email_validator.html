@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+{% block meta %} 
+<meta name="description" content="Enter an email below and our Email Validator will validate the email and show you the email validation result as valid, risky or not-valid"> 
+<meta name="keywords" content="email validator,email validator python,email validator angular,email validation regex,email validator npm,email validator java,email validator js,email validator tool,email validator api,email validator online,email validation javascript,email validation regex javascript,email validation java,email validation tool,email validation npm,email validation api,email validation regex java"> 
+{% endblock  %}
+
+{% block google_ads %} <script data-ad-client="ca-pub-5341667575368596" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> {% endblock  %}
+
+
+{% block style %}
+#p {color:#9c9c9c;}
+#p_center {text-align:center;color:#9c9c9c;}
+{% endblock  %}
+
+{% block email %}active{% endblock  %}
+
+{% block title %}Free Email Address Validator{% endblock  %}
+
+{% block content %}
+
+
+<div class="container my-3" id="div">
+
+  <h1>Free Email Address Validator</h1>
+  <p style="color:9c9c9c;font-size:25px;">Email Address validator is a Simple Free tool to check whether an email address exists or not.</p><br>
+  <div class="row">
+
+
+    <div class="col-md-6">
+
+      <div class="card">
+        <div class="card-body">
+          <blockquote class="blockquote mb-0">
+          <h3>Email Validator</h3>
+            <p id="p">Enter the target email in the box to validate, and Click Check, This Service is Free & Unlimited.</p>
+
+          </blockquote>
+          <br>
+          <form action="/email-validator" method="post">
+            {% csrf_token %}
+            <div class="input-group my-3">
+              <input type="text" class="form-control" id="email" name="email" placeholder="example@confep.in"
+                style="font-size: 25px;color:#9c9c9c;" >
+              <input class="btn btn-dark" type="submit" value="Validate" style="font-size: 25px;">
+            </div>
+            <br />
+          </form>
+          {{alert|safe}}
+          <div class="alert alert-info" role="alert"><b>Note</b> : We do not share email address(submitted for validation) with anyone.</div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+
+          <blockquote class="blockquote mb-0">
+           <h3>Validation Result</h3>
+            <p style="color:#9c9c9c;">Email Validation Results will be shown here</p>
+          </blockquote>
+          {% if output != None and input != None%}
+          <br>
+          <p id="p_center" class="my-2">Input data : <b>{{input}}</b></p>
+          <p id="p_center" >Classification : <b>{{output}}</b></p>
+          <p id="p_center" >Local : <b>{{local}}</b></p>
+          <p id="p_center" >Domain : <b>{{domain}}</b></p>
+          <br>
+          {% elif output == 'Please Verify you are human' %}
+          <br>
+          <p id="p_center"><b>{{output}}</b></p>
+          <br>
+          {% else %}
+          <br>
+          <center>
+            <img
+              src="data:image/png;base64,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"
+              alt="Email Validator">
+          </center>
+          <br>
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <br>
+  <br>
+
+
+  <div class="row">
+
+      <div class="card">
+        <div class="card-body my-3">
+          <blockquote class="blockquote mb-0">
+            <h3 >What is Email Validator?</h3>
+            <p id="p">Email Validation is a procedure that verifies if an email address is deliverable and valid. It runs a
+              swift process that catches typos, whether they are honest mistakes or purposeful misdirects. It also
+              confirms if a particular email address exists with a reliable domain such as Gmail or Yahoo.</p>
+            <br>
+
+
+            <h3>How Does Email Validation Help?</h3>
+            <p id="p">Validating your mailing list before executing email marketing campaigns have its own benefits.</p>
+            <p id="p">1. It reduces bounce rate up to 98%, thus improving your email deliverability by removing all invalid
+              email addresses from your list.</p>
+            <p id="p">2. Helps you to maintain a high Sender Score.</p>
+            <p id="p">3. By not sending mails to invalid users, you’ll save money thus increasing your revenue.</p>
+            <p id="p">4. You’ll have a higher conversion rate, as you will be able to send your emails to the right email
+              addresses.</p>
+
+            <br>
+            <h3>What are Email Validation Results ?</h3>
+            <p id="p"> <b>Valid</b>: The email address exists, and this mail-sending process will be completed to the mailbox
+              level.</p>
+            <p id="p"> <b>Risky</b>: The subscriber exists but there is a risk that this address could result in a bounce.</p>
+            <p id="p"> <b>Invalid</b>: There are syntax errors, DNS errors or mailbox errors.</p>
+<br>
+<h3>Reasons why you should verify your email addresses</h3>
+<p id="p"> <b>Eliminate hard bounces</b> : Hard bounces mostly occur because the email address no longer exists, was a fictitious email address, or was closed by the user.</p>
+
+<p id="p"> <b> Reduces Spam Complaints</b> : Best practice dictates that for every 5,000 email messages sent out you should receive less than five spam complaints.</p>
+
+<p id="p"> <b> Blacklists</b> : Getting blacklisted stops your messages (including vital transactional emails) from getting accepted by the server.</p>
+          </blockquote>
+          <br>
+
+
+
+
+        </div>
+
+    </div>
+  </div>
+
+
+
+
+</div>
+
+{% endblock %}

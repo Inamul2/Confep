@@ -1,0 +1,219 @@
+{% extends 'base.html' %}
+
+{% block meta %} 
+<meta name="description" content="Download YouTube shorts by using confep.in . Open confep.in Youtube shorts downloader website and enter the short's URL to the corresponding field, your youtube shorts will be downloaded in seconds."> 
+<meta name="keywords" content="shorts,shorts youtube,youtube shorts,youtube shorts download,youtube shorts app,youtube shorts resolution,youtube shorts beta,youtube shorts not showing,youtube shorts download"> 
+{% endblock  %}
+
+{% block google_ads %} <script data-ad-client="ca-pub-5341667575368596" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> {% endblock  %}
+
+
+{% block style %}
+#p {color:#9c9c9c;}
+  /* Facebook Section */
+#facebook {
+    {% comment %} background: #ee8c3a; {% endcomment %}
+    background-image: url("http://www.confep.in/static/youtube1.png");
+    background-repeat: no-repeat;
+    padding: 80px 0px;
+    text-align: center;
+    color: #fff;
+}
+#facebook h3 {
+    font-size: 36px;
+    font-weight: 400;
+    color: #fff;
+}
+#facebook p {
+    font-size: 15px;
+    font-style: italic;
+    padding: 0px;
+    margin: 25px 0px 40px;
+}
+#facebook form {
+    background: #fff;
+    padding: 6px 10px;
+    position: relative;
+    border-radius: 50px;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+#facebook form input[type="text"] {
+    border: 0;
+    padding: 4px 8px;
+    width: calc(100% - 100px);
+}
+#facebook form input[type="submit"] {
+    position: absolute;
+    top: 0;
+    right: -1px;
+    bottom: 0;
+    border: 0;
+    background: none;
+    font-size: 16px;
+    padding: 0 20px;
+    background: #000000;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 50px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+}
+#facebook form input[type="submit"]:hover {
+    opacity: 0.9;
+}
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+{% block youtube %}active{% endblock  %}
+
+{% block title %}Free YouTube Shorts Downloader{% endblock  %}
+
+
+{% block content %}
+
+
+
+<div class="my-3">
+<div class="row" style="margin-left: 0px;margin-right: 0px;">
+
+<!--  Form Section -->
+    <section id="facebook">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-4">
+                    <h1>YouTube Shorts Downloader</h1>
+                    <p>Download YouTube Shorts on your Device by just providing the YouTube Shorts link</p>
+                </div>
+            </div>
+          <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <form action="/youtube-shorts-downloader" method="post">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        {% if link %}
+                        <input type="text" name="link" id="link" value="{{link}}" class="form-control">
+                        {% else %}
+                        <input type="text" name="link" id="link" placeholder="YouTube Shorts Link" class="form-control">
+                        {% endif %}
+                        <button type="submit" value="Download" class="btn btn-dark" style="border-radius: 30px;" class="form-control">Download</button>
+                    </div>
+                    </form>
+
+                </div>
+          </div>
+        </div>
+    </section><!-- End Form Section-->
+</div>
+</div>
+<div class="container">
+<div class="row my-3">
+</div>
+
+{% if video %}
+<div class="row">
+<strong><h1 style="text-align:center;margin-bottom:30px;margin-top:50px;">{{video.title}}</h1></strong>
+
+
+
+<div class="embed-responsive embed-responsive-21by9">
+  <iframe class="embed-responsive-item" src="{{embedlink}}" height="600" width="100%" ></iframe>
+</div>
+
+
+<table class="table" style="width:100%;margin-top:30px;margin-bottom:50px;color:black;text-align:center;">
+  <thead class="thead-light">
+  <tr>
+    <th>Quality</th>
+    <th>File Size</th>
+    <th>Download</th>
+  </tr>
+  </thead>
+  {% for i in video.streams %}
+  <tbody style="color:blue;">
+  <tr>
+    <th scope="row">{{i.quality}}</th>
+    <td>{{i.get_filesize|filesizeformat}}</td>
+    <td><a href="{{i.url}}" target="new"><strong style="color:line;">Download</strong></a></td>
+  </tr>
+  </tbody>
+  {% endfor %}
+</table>
+
+
+</div>
+{% endif %}
+
+<div class="row">
+
+      <div class="card">
+        <div class="card-body my-3">
+          <blockquote class="blockquote mb-0">
+
+
+<h3>How to Download Youtube Shorts?</h3>
+<p id="p"> 1. Copy and Paste YouTube Shorts URL into the search box of confep.in  Youtube Shorts Downloader, then click "Download" button.</p>
+<p id="p"> 2. Once the Shorts gets downloaded, you can play it whenever and wherever you want.</p>
+
+
+<div class="video-container"style="position: relative;
+  width: 100%;
+  padding-bottom: 60%;">
+<iframe style="position: absolute;top: 0;left: 0;width: 100%;height: 100%;border: 0;" src="https://www.youtube.com/embed/ik31-HiBst0" allowfullscreen></iframe>
+</div>
+
+<h3>Free YouTube Shorts Downloader</h3>
+<p id="p">CONFEP's Youtube Shorts Downloader is a free and unlimited and probably the first YouTube Short downloader. You can easily download thousands of YouTube Shorts in high quality formats like 360p, 720p (HD), 1080p (Full HD). We provide the fastest and most convenient way to download YouTube Shorts you will ever know. You can save videos and songs to your computer or mobile phone for offline viewing.</p>
+
+<h3>Why use Confep YouTube Shorts Downloader?</h3>
+<p id="p"> 1. Super fast YouTube video conversion and download speed</p>
+<p id="p"> 2. Simple to use with just a few clicks</p>
+<p id="p"> 3. Support downloading video and MP3 with highest quality.</p>
+<p id="p"> 4. Always free and unlimited to download</p>
+<p id="p"> 5. Probably the first YouTube Shorts Downloader</p>
+
+
+
+
+
+
+</blockquote>
+
+
+        </div>
+
+    </div>
+  </div>
+
+
+
+    <div class="container my-3">
+    </div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,202 @@
+{% extends 'base.html' %}
+
+{% block meta %} 
+<meta name="description" content="Convert and download youtube videos to mp3 (audio) or mp4 (video) files for free​ with confep youtube mp3 convertor. There is no registration or software needed to use youtube mp3 converter. Use the confrp youtube mp3 convertor web-app without any limit."> 
+<meta name="keywords" content="youtube mp3,youtube mp3 dntrc,youtube mp3 320,youtube mp3 cutter,youtube mp3 2conv,youtube mp3 downloader iphone,youtube mp3 playlist downloader,youtube mp3 mate,youtube mp3 converter ios,youtube mp3 reddit,youtube mp3 downloader mac,youtube to mp3,youtube to mp3 320,youtube to mp3 2conv,youtube to mp3 iphone,youtube to mp3 y2mate,youtube to mp3 converter 2conv,youtube to mp3 android,youtube to mp3 converter reddit,youtube to mp3 no limit,youtube to mp3 converter chip,youtube to mp3 mac,youtube to mp3 converter 2conv,youtube to mp3 converter mac,youtube to mp3 converter reddit,youtube to mp3 converter chip,youtube to mp3 converter legal,youtube to mp3 converter iphone,youtube to mp3 converter mediahuman,youtube to mp3 converter y2mate,youtube to mp3 converter best free online,youtube to mp3 converter online with cutter,youtube to mp3 convertor"> 
+{% endblock  %}
+
+{% block google_ads %} <script data-ad-client="ca-pub-5341667575368596" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> {% endblock  %}
+
+
+{% block style %}
+#p {color:#9c9c9c;}
+  /* Facebook Section */
+#facebook {
+    {% comment %} background: #ee8c3a; {% endcomment %}
+    background-image: url("http://www.confep.in/static/youtube1.png");
+    background-repeat: no-repeat;
+    padding: 80px 0px;
+    text-align: center;
+    color: #fff;
+}
+#facebook h3 {
+    font-size: 36px;
+    font-weight: 400;
+    color: #fff;
+}
+#facebook p {
+    font-size: 15px;
+    font-style: italic;
+    padding: 0px;
+    margin: 25px 0px 40px;
+}
+#facebook form {
+    background: #fff;
+    padding: 6px 10px;
+    position: relative;
+    border-radius: 50px;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+#facebook form input[type="text"] {
+    border: 0;
+    padding: 4px 8px;
+    width: calc(100% - 100px);
+}
+#facebook form input[type="submit"] {
+    position: absolute;
+    top: 0;
+    right: -1px;
+    bottom: 0;
+    border: 0;
+    background: none;
+    font-size: 16px;
+    padding: 0 20px;
+    background: #000000;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 50px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+}
+#facebook form input[type="submit"]:hover {
+    opacity: 0.9;
+}
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+{% block youtube %}active{% endblock  %}
+{% block title %}Free Youtube Video to Mp3 Converter{% endblock  %}
+
+{% block content %}
+
+
+<div class="my-3">
+<div class="row" style="margin-left: 0px;margin-right: 0px;">
+
+<!--  Form Section -->
+    <section id="facebook">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-4">
+                    <h1>YouTube Mp3 Converter</h1>
+                    <p>Download YouTube Videos in Mp3 mode on your Device by just providing the video link</p>
+                </div>
+            </div>
+          <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <form action="/youtube-mp3-converter" method="post">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        {% if link %}
+                        <input type="text" name="link" id="link" value="{{link}}" class="form-control">
+                        {% else %}
+                        <input type="text" name="link" id="link" placeholder="YouTube Video Link" class="form-control">
+                        {% endif %}
+                        <button type="submit" value="Download" class="btn btn-dark" style="border-radius: 30px;" class="form-control">Download</button>
+                    </div>
+                    </form>
+
+                </div>
+          </div>
+        </div>
+    </section><!-- End Form Section-->
+</div>
+</div>
+<div class="container">
+<div class="row my-3">
+</div>
+
+{% if video %}
+<div class="row">
+<strong><h1 style="text-align:center;margin-bottom:30px;margin-top:50px;">{{video.title}}</h1></strong>
+
+
+
+<div class="embed-responsive embed-responsive-21by9">
+  <iframe class="embed-responsive-item" src="{{embedlink}}" height="600" width="100%" ></iframe>
+</div>
+
+
+<table class="table" style="width:100%;margin-top:30px;margin-bottom:50px;color:black;text-align:center;">
+  <thead class="thead-light">
+  <tr>
+    <th>Quality</th>
+    <th>File Size</th>
+    <th>Download</th>
+  </tr>
+  </thead>
+  {% for i in video.audiostreams %}
+  <tbody style="color:blue;">
+  <tr>
+    <th scope="row">{{i.quality}}</th>
+    <td>{{i.get_filesize|filesizeformat}}</td>
+    <td><a href="{{i.url}}" target="new"><strong style="color:line;">Download</strong></a></td>
+  </tr>
+  </tbody>
+  {% endfor %}
+</table>
+
+
+</div>
+{% endif %}
+
+
+
+<div class="row">
+
+      <div class="card">
+        <div class="card-body my-3">
+          <blockquote class="blockquote mb-0">
+
+
+<h3>How to Download Youtube Videos in Mp3?</h3>
+<p id="p"> 1. Copy and Paste YouTube URL into the search box, then click "Download" button.</p>
+<p id="p"> 2. Once the video gets downloaded, you can play it whenever and wherever you want.</p>
+
+
+<h3>Free YouTube Video to Mp3 Downloader</h3>
+<p id="p">CONFEP's Youtube Mp3 Downloader is a free and unlimited YouTube Mp3 downloader. You can easily download thousands of YouTube videos in high quality Mp3 formats . We provide the fastest and most convenient way to download YouTube videos you will ever know. You can save videos and songs to your computer or mobile phone for offline viewing.</p>
+
+<h3>Why use Confep YouTube Mp3 Downloader?</h3>
+<p id="p"> 1. Super fast YouTube video conversion and download speed</p>
+<p id="p"> 2. Simple to use with just a few clicks</p>
+<p id="p"> 3. Support downloading video and MP3 with highest quality.</p>
+<p id="p"> 4. Always free and unlimited to download</p>
+
+
+
+
+
+
+</blockquote>
+
+
+        </div>
+
+
+    </div>
+
+  </div>
+
+
+
+
+    <div class="container my-3">
+    </div>
+
+
+
+</div>
+
+
+
+
+{% endblock %}

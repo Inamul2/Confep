@@ -1,0 +1,287 @@
+<html lang="en"><head>
+
+  <meta charset="UTF-8">
+  
+
+  <title>Invoice 3 - Confep</title>
+  
+<link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700|Montserrat:300,400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation-flex.min.css">
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  
+<style>
+body {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  color: #322d28;
+}
+
+header.top-bar h1 {
+  font-family: "Montserrat", sans-serif;
+}
+
+main {
+  margin-top: 4rem;
+  min-height: calc(100vh - 107px);
+}
+main .inner-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+table.invoice {
+  background: #fff;
+}
+table.invoice .num {
+  font-weight: 200;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 0.8em;
+}
+table.invoice tr, table.invoice td {
+  background: #fff;
+  text-align: left;
+  font-weight: 400;
+  color: #322d28;
+}
+table.invoice tr.header td img {
+  max-width: 300px;
+}
+table.invoice tr.header td h2 {
+  text-align: right;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 200;
+  font-size: 2rem;
+  color: #1779ba;
+}
+table.invoice tr.intro td:nth-child(2) {
+  text-align: right;
+}
+table.invoice tr.details > td {
+  padding-top: 4rem;
+  padding-bottom: 0;
+}
+table.invoice tr.details td.id, table.invoice tr.details td.qty, table.invoice tr.details th.id, table.invoice tr.details th.qty {
+  text-align: center;
+}
+table.invoice tr.details td:last-child, table.invoice tr.details th:last-child {
+  text-align: right;
+}
+table.invoice tr.details table thead, table.invoice tr.details table tbody {
+  position: relative;
+}
+table.invoice tr.details table thead:after, table.invoice tr.details table tbody:after {
+  content: "";
+  height: 1px;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  margin-top: -1px;
+  background: #c8c3be;
+}
+table.invoice tr.totals td {
+  padding-top: 0;
+}
+table.invoice tr.totals table tr td {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+table.invoice tr.totals table tr td:nth-child(1) {
+  font-weight: 500;
+}
+table.invoice tr.totals table tr td:nth-child(2) {
+  text-align: right;
+  font-weight: 200;
+}
+table.invoice tr.totals table tr:nth-last-child(2) td {
+  padding-bottom: 0.5em;
+}
+table.invoice tr.totals table tr:nth-last-child(2) td:last-child {
+  position: relative;
+}
+table.invoice tr.totals table tr:nth-last-child(2) td:last-child:after {
+  content: "";
+  height: 4px;
+  width: 110%;
+  border-top: 1px solid #1779ba;
+  border-bottom: 1px solid #1779ba;
+  position: relative;
+  right: 0;
+  bottom: -0.575rem;
+  display: block;
+}
+table.invoice tr.totals table tr.total td {
+  font-size: 1.2em;
+  padding-top: 0.5em;
+  font-weight: 700;
+}
+table.invoice tr.totals table tr.total td:last-child {
+  font-weight: 700;
+}
+
+.additional-info h5 {
+  font-size: 0.8em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #1779ba;
+}
+@media print {
+  body {
+    min-width: initial !important;
+  }
+  .btn-print {
+    display: none;
+  }
+}
+
+
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+</head>
+
+<body translate="no">
+  <html>
+  <head></head>
+  <body class="A4">
+<div class="row expanded">
+  <main class="columns">
+    <div class="inner-container">
+    <header class="row align-center">
+        &nbsp;&nbsp;<a class="button"><button class="btn btn-print btn-sm btn-light" onClick="handlePrint()">
+        <i class="fa fa-print"></i>
+        Print
+      </button></a>
+      </header>
+    <section style="    max-width: 75rem;
+    margin-right: auto;
+    margin-left: auto;
+    display: -ms-flexbox;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;">
+      <div class="large invoice-container" style="position: relative;
+    margin: 0 0 1rem;
+    padding: 1rem;
+    border-radius: 0;
+    background-color: #fff;
+    color: #0a0a0a;">
+        <table class="invoice">
+          <tbody><tr class="header">
+            <td class="align-left">
+              <h2>{{company_3rd_name}}</h2>
+            </td>
+            <td class="align-right">
+              <h2>Invoice</h2>
+            </td>
+          </tr>
+          <tr class="intro">
+            <td class="">
+              Hello, {{buyer_name}}.<br>
+              Thank you for your order.
+            </td>
+            <td class="text-right">
+              <span class="num">Order #{{invoice_number}}</span><br>
+              {{invoice_date}}
+            </td>
+          </tr>
+          <tr class="details">
+            <td colspan="2">
+              <table>
+                <thead>
+                  <tr>
+                    <th class="desc">PRODUCT</th>
+                    <th class="id">UNIT</th>
+                    <th class="qty">RATE</th>
+                    <th class="amt">PRICE</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="item">
+                    <td class="desc">{{product_1}}</td>
+                    <td class="id num">{{quantity_1}}</td>
+                    <td class="qty">{{currency}} {{rate_1}}</td>
+                    <td class="amt">{{currency}} {{amount_1}}</td>
+                  </tr>
+                  {% if amount_2 %}
+                  <tr class="item">
+                    <td class="desc">{{product_2}}</td>
+                    <td class="id num">{{quantity_2}}</td>
+                    <td class="qty">{{currency}} {{rate_2}}</td>
+                    <td class="amt">{{currency}} {{amount_2}}</td>
+                  </tr>
+                  {% endif %}
+                  {% if amount_3 %}
+                  <tr class="item">
+                    <td class="desc">{{product_3}}</td>
+                    <td class="id num">{{quantity_3}}</td>
+                    <td class="qty">{{currency}} {{rate_3}}</td>
+                    <td class="amt">{{currency}} {{amount_3}}</td>
+                  </tr>
+                  {% endif %}
+                </tbody>
+              </table>
+            </td> 
+          </tr>
+          <tr class="totals">
+            <td></td>
+            <td>
+              <table>
+                <tbody>
+                <tr class="total">
+                  <td>Total</td>
+                  <td>{{currency}} {{result}}</td>
+                </tr>
+              </tbody></table>
+            </td>
+          </tr>
+        </tbody></table>
+        
+        <section class="additional-info" style="
+    margin-left: 25px;
+">
+        <div class="row">
+          <div class="columns">
+            <h5>Billing Information</h5>
+            <p>{{buyer_name}}<br>
+              {{buyer_address}}<br>
+              {{buyer_contact}}</p>
+          </div>
+          <div class="columns">
+            {{svg|safe}}
+          </div>
+        </div>
+        </section>
+      </div>
+    </section>
+    </div>
+  </main>
+</div>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-8216c69d01441f36c0ea791ae2d4469f0f8ff5326f00ae2d00e4bb7d20e24edb.js"></script>
+
+  
+      <script id="rendered-js" >
+const handlePrint = () => window.print();
+//# sourceURL=pen.js
+    </script>
+
+
+</body>
+
+</html>

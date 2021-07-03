@@ -1,0 +1,664 @@
+{% extends 'base.html' %}
+
+{% block meta %} 
+<meta name="description" content="Generate a Invoice in a click with several templates and currencies you want. Just select the invoice template you want and fill the details you will get your invoice in a second."> 
+<meta name="keywords" content="free invoice generator,free invoice generator nz,free invoice generator australia,free invoice generator software,free invoice generator south africa,free invoice generator india,free invoice generator canada,free invoice generator google,free invoice generator for freelancers,free invoice generator zoho,free invoice generator online,invoice generator,invoice generator germany,invoice generator excel,invoice generator python,invoice generator api,invoice generator software,invoice generator australia,invoice generator google,invoice generator nz,invoice generator india,invoice generator free,invoice,invoice deutsch,invoice template,invoice meaning,invoice generator,invoice example,invoice number,invoice ninja,invoice payment,invoice template word,invoice übersetzung,free invoice generator,free invoice template,free invoice software,free invoice template word,free invoice maker,free invoice template pdf,free invoice app,free invoice builder,free invoice template uk,free invoice template excel,free invoice"> 
+{% endblock  %}
+
+
+
+{% block generator %}active{% endblock  %}
+
+{% block title %}Free Invoice Generator{% endblock  %}
+
+{% block google_ads %} <script data-ad-client="ca-pub-5341667575368596" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> {% endblock  %}
+
+
+{% block style %}
+* {box-sizing: border-box}
+
+/* Set height of body and the document to 100% */
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+/* Style tab links */
+.tablink {
+  background-color: #f5f6f8;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 20%;
+
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+  display: none;
+  padding: 100px 20px;
+  height: 100%;
+}
+{% endblock style %}
+
+
+{% block content %}
+
+<div class="container">
+<h1 style='text-align:center;'>Invoice Generator</h1>
+
+<h4 style='text-align:center;'>Choose the format you want.</h4>
+<hr />
+
+<button class="tablink" onclick="openPage('1st', this, 'white')" id="defaultOpen"><img src="https://confep.in/static/invoice_1.png" alt="" style="height:200px;width:200px;"></button>
+<button class="tablink" onclick="openPage('2nd', this, 'white')"><img src="https://confep.in/static/invoice_2.png" alt="" style="height:200px;width:200px;"></button>
+<button class="tablink" onclick="openPage('3rd', this, 'white')"><img src="https://confep.in/static/invoice_3.png" alt="" style="height:200px;width:200px;"></button>
+<button class="tablink" onclick="openPage('4th', this, 'white')"><img src="https://confep.in/static/invoice_4.png" alt="" style="height:200px;width:200px;"></button>
+<button class="tablink" onclick="openPage('5th', this, 'white')"><img src="https://confep.in/static/invoice_5.png" alt="" style="height:200px;width:200px;"></button>
+
+<div id="1st" class="tabcontent">
+<h1 style="text-align:center;">Please fill out the form below.</h1>
+<hr />
+<form class="row g-3" method="post" action="/invoice-generator" target="_blank">
+{% csrf_token %}
+<h4 class="my-3"> &#8594; Order Details </h4>
+  <div class="col-md-4">
+    <label for="invoice_date" class="form-label">Date of Invoice</label>
+    <input type="date" class="form-control" id="invoice_date" name="invoice_date">
+  </div>
+  <div class="col-md-4">
+    <label for="invoice_number" class="form-label">Invoice Number</label>
+    <input type="text" class="form-control" id="invoice_number" name="invoice_number">
+  </div>
+  <div class="col-md-4">
+    <label for="payment" class="form-label">Prepaid or Postpaid</label>
+    <select id="payment" class="form-select" name="payment">
+      <option selected value="PREPAID">PREPAID</option>
+      <option value="POSTPAID">POSTPAID</option>
+      <option value="not">NOT APPLICABLE</option>
+    </select>
+  </div>
+  <div class="col-md-12">
+  <label for="currency" class="form-label">Choose your Currency</label>
+<select id="currency" name="currency" class="form-select" aria-label="Default select example" required>
+  <option selected>Select your Currency</option>
+  <option value="$">Dollar ($)</option>
+  <option value="¢">Cent (¢)</option>
+  <option value="£">Pound (£)</option>
+  <option value="¥">Yen (¥)</option>
+  <option value="₣">Franc (₣)</option>
+  <option value="₤">Lira (₤)</option>
+  <option value="₧">peseta (₧)</option>
+  <option value="€">Euro (€)</option>
+  <option value="₹">Rupee (₹)</option>
+  <option value="₩">Won (₩)</option>
+  <option value="₴">Hryvnia (₴)</option>
+  <option value="₯">Drachma (₯)</option>
+  <option value="₮">Tugrik (₮)</option>
+  <option value="₰">German penny (₰)</option>
+  <option value="₲">Guarani (₲)</option>
+  <option value="₱">Peso (₱)</option>
+  <option value="₳">Austral (₳)</option>
+  <option value="₵">Cedi (₵)</option>
+  <option value="₭">Kip (₭)</option>
+  <option value="₫">Dong (₫)</option>
+</select>
+  </div>
+  <div class="col-md-12">
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Product</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Rate</th>
+    </tr>
+  </thead>
+  <tbody id="add_table_1">
+    <tr>
+      <th scope="row">1</th>
+      <td><input class="form-control" type="text" id="product_1" name="product_1" required></td>
+      <td><input class="form-control" type="text" id="quantity_1" name="quantity_1" required></td>
+      <td><input class="form-control" type="text" id="rate_1" name="rate_1" required></td>
+    </tr>
+  </tbody>
+</table>
+<button type="button" id="add_row_1" class="btn btn-dark">Add Product</button>
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-dark" style="width:100%;">Generate Invoice</button>
+  </div>
+</form>
+</div>
+
+<div id="2nd" class="tabcontent my-3">
+<h1 style="text-align:center;">Please fill out the form below.</h1>
+<hr />
+<form class="row g-3" method="post" action="/invoice-generator" target="_blank">
+{% csrf_token %}
+<h4 class="my-3"> &#8594; Seller Details </h4>
+<div class="col-md-3">
+    <label for="company_name" class="form-label">Seller Name</label>
+    <input type="text" class="form-control" id="company_name" name="company_name">
+  </div>
+  <div class="col-md-6">
+    <label for="company_address" class="form-label">Seller Address</label>
+    <input type="text" class="form-control" id="company_address" name="company_address">
+  </div>
+  <div class="col-md-3">
+    <label for="company_contact" class="form-label">Seller Contact</label>
+    <input type="phno" class="form-control" id="company_contact" name="company_contact">
+  </div>
+  
+  <h4 class="my-3"> &#8594; Buyer Details </h4>
+<div class="col-md-3">
+    <label for="buyer_name" class="form-label">Buyer Name</label>
+    <input type="text" class="form-control" id="buyer_name" name="buyer_name">
+  </div>
+  <div class="col-md-6">
+    <label for="buyer_address" class="form-label">Buyer Address</label>
+    <input type="text" class="form-control" id="buyer_address" name="buyer_address">
+  </div>
+  <div class="col-md-3">
+    <label for="buyer_contact" class="form-label">Buyer Contact</label>
+    <input type="phno" class="form-control" id="buyer_contact" name="buyer_contact">
+  </div>
+
+
+
+<h4 class="my-3"> &#8594; Order Details </h4>
+
+  <div class="col-md-4">
+    <label for="invoice_date" class="form-label">Date of Invoice</label>
+    <input type="date" class="form-control" id="invoice_date" name="invoice_date">
+  </div>
+  <div class="col-md-4">
+    <label for="invoice_number" class="form-label">Invoice Number</label>
+    <input type="text" class="form-control" id="invoice_number" name="invoice_number">
+  </div>
+  <div class="col-md-4">
+    <label for="payment" class="form-label">Prepaid or Postpaid</label>
+    <select id="payment" class="form-select" name="payment">
+      <option selected value="PREPAID">PREPAID</option>
+      <option value="POSTPAID">POSTPAID</option>
+      <option value="not">NOT APPLICABLE</option>
+    </select>
+  </div>
+  <div class="col-md-12">
+  <label for="currency" class="form-label">Choose your Currency</label>
+<select id="currency" name="currency" class="form-select" aria-label="Default select example" required>
+  <option selected>Select your Currency</option>
+  <option value="$">Dollar ($)</option>
+  <option value="¢">Cent (¢)</option>
+  <option value="£">Pound (£)</option>
+  <option value="¥">Yen (¥)</option>
+  <option value="₣">Franc (₣)</option>
+  <option value="₤">Lira (₤)</option>
+  <option value="₧">peseta (₧)</option>
+  <option value="€">Euro (€)</option>
+  <option value="₹">Rupee (₹)</option>
+  <option value="₩">Won (₩)</option>
+  <option value="₴">Hryvnia (₴)</option>
+  <option value="₯">Drachma (₯)</option>
+  <option value="₮">Tugrik (₮)</option>
+  <option value="₰">German penny (₰)</option>
+  <option value="₲">Guarani (₲)</option>
+  <option value="₱">Peso (₱)</option>
+  <option value="₳">Austral (₳)</option>
+  <option value="₵">Cedi (₵)</option>
+  <option value="₭">Kip (₭)</option>
+  <option value="₫">Dong (₫)</option>
+</select>
+  </div>
+
+
+  <div class="col-md-12">
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Product</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Rate</th>
+    </tr>
+  </thead>
+  <tbody id="add_table_2">
+    <tr>
+      <th scope="row">1</th>
+      <td><input class="form-control" type="text" id="product_1" name="product_1" required></td>
+      <td><input class="form-control" type="text" id="quantity_1" name="quantity_1" required></td>
+      <td><input class="form-control" type="text" id="rate_1" name="rate_1" required></td>
+    </tr>
+  </tbody>
+</table>
+<button type="button" id="add_row_2" class="btn btn-dark">Add Product</button>
+  </div>
+  <h4 class="my-3"> &#8594; Additional Details </h4>
+
+  <div class="col-md-12">
+    <textarea class="form-control" id="additional_details" name="additional_details" row="5" required></textarea>
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-dark" style="width:100%;">Generate Invoice</button>
+  </div>
+</form>
+</div>
+
+
+<div id="3rd" class="tabcontent my-3">
+<h1 style="text-align:center;">Please fill out the form below.</h1>
+<hr />
+<form class="row g-3" method="post" action="/invoice-generator" target="_blank">
+{% csrf_token %}
+<h4 class="my-3"> &#8594; Company Name </h4>
+<div class="col-md-12">
+    <input type="text" class="form-control" id="company_3rd_name" name="company_3rd_name" required>
+  </div>
+  
+  <h4 class="my-3"> &#8594; Buyer Details </h4>
+<div class="col-md-3">
+    <label for="buyer_name" class="form-label">Buyer Name</label>
+    <input type="text" class="form-control" id="buyer_name" name="buyer_name">
+  </div>
+  <div class="col-md-6">
+    <label for="buyer_address" class="form-label">Buyer Address</label>
+    <input type="text" class="form-control" id="buyer_address" name="buyer_address">
+  </div>
+  <div class="col-md-3">
+    <label for="buyer_contact" class="form-label">Buyer Contact</label>
+    <input type="phno" class="form-control" id="buyer_contact" name="buyer_contact">
+  </div>
+
+
+
+<h4 class="my-3"> &#8594; Order Details </h4>
+
+  <div class="col-md-4">
+    <label for="invoice_date" class="form-label">Date of Invoice</label>
+    <input type="date" class="form-control" id="invoice_date" name="invoice_date">
+  </div>
+  <div class="col-md-4">
+    <label for="invoice_number" class="form-label">Invoice Number</label>
+    <input type="text" class="form-control" id="invoice_number" name="invoice_number">
+  </div>
+  <div class="col-md-4">
+    <label for="payment" class="form-label">Prepaid or Postpaid</label>
+    <select id="payment" class="form-select" name="payment">
+      <option selected value="PREPAID">PREPAID</option>
+      <option value="POSTPAID">POSTPAID</option>
+      <option value="not">NOT APPLICABLE</option>
+    </select>
+  </div>
+  <div class="col-md-12">
+  <label for="currency" class="form-label">Choose your Currency</label>
+<select id="currency" name="currency" class="form-select" aria-label="Default select example" required>
+  <option selected>Select your Currency</option>
+  <option value="$">Dollar ($)</option>
+  <option value="¢">Cent (¢)</option>
+  <option value="£">Pound (£)</option>
+  <option value="¥">Yen (¥)</option>
+  <option value="₣">Franc (₣)</option>
+  <option value="₤">Lira (₤)</option>
+  <option value="₧">peseta (₧)</option>
+  <option value="€">Euro (€)</option>
+  <option value="₹">Rupee (₹)</option>
+  <option value="₩">Won (₩)</option>
+  <option value="₴">Hryvnia (₴)</option>
+  <option value="₯">Drachma (₯)</option>
+  <option value="₮">Tugrik (₮)</option>
+  <option value="₰">German penny (₰)</option>
+  <option value="₲">Guarani (₲)</option>
+  <option value="₱">Peso (₱)</option>
+  <option value="₳">Austral (₳)</option>
+  <option value="₵">Cedi (₵)</option>
+  <option value="₭">Kip (₭)</option>
+  <option value="₫">Dong (₫)</option>
+</select>
+  </div>
+
+
+  <div class="col-md-12">
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Product</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Rate</th>
+    </tr>
+  </thead>
+  <tbody id="add_table_3">
+    <tr>
+      <th scope="row">1</th>
+      <td><input class="form-control" type="text" id="product_1" name="product_1" required></td>
+      <td><input class="form-control" type="text" id="quantity_1" name="quantity_1" required></td>
+      <td><input class="form-control" type="text" id="rate_1" name="rate_1" required></td>
+    </tr>
+  </tbody>
+</table>
+<button type="button" id="add_row_3" class="btn btn-dark">Add Product</button>
+  </div>
+  
+  <div class="col-12">
+    <button type="submit" class="btn btn-dark" style="width:100%;">Generate Invoice</button>
+  </div>
+</form>
+</div>
+
+<div id="4th" class="tabcontent my-3">
+<h1 style="text-align:center;">Please fill out the form below.</h1>
+<hr />
+<form class="row g-3" method="post" action="/invoice-generator" target="_blank">
+{% csrf_token %}
+<h4 class="my-3"> &#8594; Seller Details </h4>
+<div class="col-md-3">
+    <label for="company_name" class="form-label">Seller Name</label>
+    <input type="text" class="form-control" id="company_name" name="company_name">
+  </div>
+  <div class="col-md-6">
+    <label for="company_address" class="form-label">Seller Address</label>
+    <input type="text" class="form-control" id="company_address" name="company_address">
+  </div>
+  <div class="col-md-3">
+    <label for="company_contact" class="form-label">Seller Contact</label>
+    <input type="phno" class="form-control" id="company_contact" name="company_contact">
+  </div>
+    <div class="col-md-6">
+    <label for="company_email" class="form-label">Seller Email</label>
+    <input type="email" class="form-control" id="company_email" name="company_email">
+  </div>
+    <div class="col-md-6">
+    <label for="company_website" class="form-label">Seller Website</label>
+    <input type="text" class="form-control" id="company_website" name="company_website" required>
+  </div>
+  
+<h4 class="my-3"> &#8594; Order Details </h4>
+  <div class="col-md-4">
+    <label for="invoice_date" class="form-label">Date of Invoice</label>
+    <input type="date" class="form-control" id="invoice_date" name="invoice_date">
+  </div>
+  <div class="col-md-4">
+    <label for="invoice_number" class="form-label">Invoice Number</label>
+    <input type="text" class="form-control" id="invoice_number" name="invoice_number">
+  </div>
+  <div class="col-md-4">
+    <label for="payment" class="form-label">Prepaid or Postpaid</label>
+    <select id="payment" class="form-select" name="payment">
+      <option selected value="PREPAID">PREPAID</option>
+      <option value="POSTPAID">POSTPAID</option>
+      <option value="not">NOT APPLICABLE</option>
+    </select>
+  </div>
+  <div class="col-md-12">
+  <label for="currency" class="form-label">Choose your Currency</label>
+<select id="currency" name="currency" class="form-select" aria-label="Default select example" required>
+  <option selected>Select your Currency</option>
+  <option value="$">Dollar ($)</option>
+  <option value="¢">Cent (¢)</option>
+  <option value="£">Pound (£)</option>
+  <option value="¥">Yen (¥)</option>
+  <option value="₣">Franc (₣)</option>
+  <option value="₤">Lira (₤)</option>
+  <option value="₧">peseta (₧)</option>
+  <option value="€">Euro (€)</option>
+  <option value="₹">Rupee (₹)</option>
+  <option value="₩">Won (₩)</option>
+  <option value="₴">Hryvnia (₴)</option>
+  <option value="₯">Drachma (₯)</option>
+  <option value="₮">Tugrik (₮)</option>
+  <option value="₰">German penny (₰)</option>
+  <option value="₲">Guarani (₲)</option>
+  <option value="₱">Peso (₱)</option>
+  <option value="₳">Austral (₳)</option>
+  <option value="₵">Cedi (₵)</option>
+  <option value="₭">Kip (₭)</option>
+  <option value="₫">Dong (₫)</option>
+</select>
+  </div>
+
+  <div class="col-md-12">
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Product</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Rate</th>
+    </tr>
+  </thead>
+  <tbody id="add_table_4">
+    <tr>
+      <th scope="row">1</th>
+      <td><input class="form-control" type="text" id="product_1" name="product_1" required></td>
+      <td><input class="form-control" type="text" id="quantity_1" name="quantity_1" required></td>
+      <td><input class="form-control" type="text" id="rate_1" name="rate_1" required></td>
+    </tr>
+  </tbody>
+</table>
+<button type="button" id="add_row_4" class="btn btn-dark">Add Product</button>
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-dark" style="width:100%;">Generate Invoice</button>
+  </div>
+</form>
+</div>
+
+<div id="5th" class="tabcontent my-3">
+<h1 style="text-align:center;">Please fill out the form below.</h1>
+<hr />
+<form class="row g-3" method="post" action="/invoice-generator" target="_blank">
+{% csrf_token %}
+<h4 class="my-3"> &#8594; Seller Details </h4>
+<div class="col-md-2">
+    <label for="company_name" class="form-label">Seller Name</label>
+    <input type="text" class="form-control" id="company_name" name="company_name">
+  </div>
+  <div class="col-md-6">
+    <label for="company_address" class="form-label">Seller Address</label>
+    <input type="text" class="form-control" id="company_address" name="company_address">
+  </div>
+  <div class="col-md-2">
+    <label for="company_contact" class="form-label">Seller Contact</label>
+    <input type="phno" class="form-control" id="company_contact" name="company_contact">
+  </div>
+    <div class="col-md-2">
+    <label for="company_email" class="form-label">Seller Email</label>
+    <input type="email" class="form-control" id="company_email" name="company_email" required>
+  </div>
+
+  <h4 class="my-3"> &#8594; Buyer Details </h4>
+<div class="col-md-2">
+    <label for="buyer_name" class="form-label">Buyer Name</label>
+    <input type="text" class="form-control" id="buyer_name" name="buyer_name">
+  </div>
+  <div class="col-md-6">
+    <label for="buyer_address" class="form-label">Buyer Address</label>
+    <input type="text" class="form-control" id="buyer_address" name="buyer_address">
+  </div>
+  <div class="col-md-2">
+    <label for="buyer_contact" class="form-label">Buyer Contact</label>
+    <input type="phno" class="form-control" id="buyer_contact" name="buyer_contact">
+  </div>
+  <div class="col-md-2">
+    <label for="buyer_email" class="form-label">Buyer Email</label>
+    <input type="email" class="form-control" id="buyer_email" name="buyer_email" required>
+  </div>
+
+
+
+
+
+<h4 class="my-3"> &#8594; Order Details </h4>
+  <div class="col-md-4">
+    <label for="invoice_date" class="form-label">Date of Invoice</label>
+    <input type="date" class="form-control" id="invoice_date" name="invoice_date">
+  </div>
+  <div class="col-md-4">
+    <label for="invoice_number" class="form-label">Invoice Number</label>
+    <input type="text" class="form-control" id="invoice_number" name="invoice_number">
+  </div>
+  <div class="col-md-4">
+    <label for="payment" class="form-label">Prepaid or Postpaid</label>
+    <select id="payment" class="form-select" name="payment">
+      <option selected value="PREPAID">PREPAID</option>
+      <option value="POSTPAID">POSTPAID</option>
+      <option value="not">NOT APPLICABLE</option>
+    </select>
+  </div>
+  <div class="col-md-12">
+  <label for="currency" class="form-label">Choose your Currency</label>
+<select id="currency" name="currency" class="form-select" aria-label="Default select example" required>
+  <option selected>Select your Currency</option>
+  <option value="$">Dollar ($)</option>
+  <option value="¢">Cent (¢)</option>
+  <option value="£">Pound (£)</option>
+  <option value="¥">Yen (¥)</option>
+  <option value="₣">Franc (₣)</option>
+  <option value="₤">Lira (₤)</option>
+  <option value="₧">peseta (₧)</option>
+  <option value="€">Euro (€)</option>
+  <option value="₹">Rupee (₹)</option>
+  <option value="₩">Won (₩)</option>
+  <option value="₴">Hryvnia (₴)</option>
+  <option value="₯">Drachma (₯)</option>
+  <option value="₮">Tugrik (₮)</option>
+  <option value="₰">German penny (₰)</option>
+  <option value="₲">Guarani (₲)</option>
+  <option value="₱">Peso (₱)</option>
+  <option value="₳">Austral (₳)</option>
+  <option value="₵">Cedi (₵)</option>
+  <option value="₭">Kip (₭)</option>
+  <option value="₫">Dong (₫)</option>
+</select>
+  </div>
+
+  <div class="col-md-12">
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Product</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Rate</th>
+    </tr>
+  </thead>
+  <tbody id="add_table_5">
+    <tr>
+      <th scope="row">1</th>
+      <td><input class="form-control" type="text" id="product_1" name="product_1" required></td>
+      <td><input class="form-control" type="text" id="quantity_1" name="quantity_1" required></td>
+      <td><input class="form-control" type="text" id="rate_1" name="rate_1" required></td>
+    </tr>
+  </tbody>
+</table>
+<button type="button" id="add_row_5" class="btn btn-dark">Add Product</button>
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-dark" style="width:100%;">Generate Invoice</button>
+  </div>
+</form>
+
+</div>
+
+</div>
+{% endblock content %}
+
+{% block script %}
+<script>
+function openPage(pageName,elmnt,color) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].style.backgroundColor = "";
+  }
+  document.getElementById(pageName).style.display = "block";
+  elmnt.style.backgroundColor = color;
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+var id_1 = 2
+var id_2 = 2
+var id_3 = 2
+var id_4 = 2
+var id_5 = 2
+$('#add_row_1').click(function() {
+    if (id_1 <=3){
+  $(`<tr>
+      <th scope="row">${id_1}</th>
+      <td><input class="form-control" type="text" id="product_${id_1}" name="product_${id_1}"></td>
+      <td><input class="form-control" type="text" id="quantity_${id_1}" name="quantity_${id_1}"></td>
+      <td><input class="form-control" type="text" id="rate_${id_1}" name="rate_${id_1}"></td>
+    </tr>`).appendTo('#add_table_1');
+  id_1++
+}});
+
+$('#add_row_2').click(function() {
+    if (id_2 <=3){
+  $(`<tr>
+      <th scope="row">${id_2}</th>
+      <td><input class="form-control" type="text" id="product_${id_2}" name="product_${id_2}"></td>
+      <td><input class="form-control" type="text" id="quantity_${id_2}" name="quantity_${id_2}"></td>
+      <td><input class="form-control" type="text" id="rate_${id_2}" name="rate_${id_2}"></td>
+    </tr>`).appendTo('#add_table_2');
+  id_2++
+}});
+
+
+
+$('#add_row_3').click(function() {
+    if (id_3 <=3){
+  $(`<tr>
+      <th scope="row">${id_3}</th>
+      <td><input class="form-control" type="text" id="product_${id_3}" name="product_${id_3}"></td>
+      <td><input class="form-control" type="text" id="quantity_${id_3}" name="quantity_${id_3}"></td>
+      <td><input class="form-control" type="text" id="rate_${id_3}" name="rate_${id_3}"></td>
+    </tr>`).appendTo('#add_table_3');
+  id_3++
+}});
+
+
+
+$('#add_row_4').click(function() {
+    if (id_4 <=3){
+  $(`<tr>
+      <th scope="row">${id_4}</th>
+      <td><input class="form-control" type="text" id="product_${id_4}" name="product_${id_4}"></td>
+      <td><input class="form-control" type="text" id="quantity_${id_4}" name="quantity_${id_4}"></td>
+      <td><input class="form-control" type="text" id="rate_${id_4}" name="rate_${id_4}"></td>
+    </tr>`).appendTo('#add_table_4');
+  id_4++
+}});
+
+
+
+$('#add_row_5').click(function() {
+    if (id_5 <=3){
+  $(`<tr>
+      <th scope="row">${id_5}</th>
+      <td><input class="form-control" type="text" id="product_${id_5}" name="product_${id_5}"></td>
+      <td><input class="form-control" type="text" id="quantity_${id_5}" name="quantity_${id_5}"></td>
+      <td><input class="form-control" type="text" id="rate_${id_5}" name="rate_${id_5}"></td>
+    </tr>`).appendTo('#add_table_5');
+  id_5++
+}});
+
+
+
+
+</script>
+
+
+{% endblock script %}

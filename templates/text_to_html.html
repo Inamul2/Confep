@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block meta %} 
+<meta name="description" content="Free online Word to HTML converter with code cleaning features and easy switch between the visual and source editors. It works perfectly for any document"> 
+<meta name="keywords" content="text to html converter, text to html converter online, text to html editor,text to html javascript,text to html python,text to html ratio,text to html table,text to html entities,text to html converter,text to html, text html style,text html generator,text html css,text html editor,text html element,text html code generator,text html content type,text html link,text html ratio,text html tag,text html"> 
+{% endblock  %}
+
+{% block google_ads %} <script data-ad-client="ca-pub-5341667575368596" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> {% endblock  %}
+
+
+{% block text %}active{% endblock  %}
+
+{% block title %}Free Text to HTML Generator {% endblock  %}
+
+{% block head_script %}
+<script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
+{% endblock  %}
+
+{% block style %}
+#button{
+    width:100%;
+}
+{% endblock  %}
+
+
+{% block content %}
+        <div class="container my-3">
+		<br>
+    <h1>Free Text to HTML Converter</h1>
+  <p style="color:9c9c9c;font-size:25px;">The easy way to instantly convert your text into perfect HTML</p><br>
+        <form action="/text-to-html" method="post">
+        {% csrf_token %}
+        <textarea class="form-control" style="font-size: 25px;color:#9c9c9c;" name="editor" id="editor" cols="30" rows="10" required>{{editor|safe}}</textarea>
+        <button id="button" style="font-size: 25px;" class="btn btn-dark my-2">Convert to HTML</button>        
+        </form>
+        {% if editor %}
+        <textarea class="form-control" style="font-size: 25px;color:#9c9c9c;" cols="30" rows="10">{{editor}}</textarea>
+        {% endif %}
+        </div>
+
+{% endblock %}
+
+
+
+
+
+
+{% block script %}
+<script>
+    CKEDITOR.replace( 'editor' );
+</script>       
+{% endblock  %}
+                

@@ -1,0 +1,202 @@
+{% extends 'base.html' %}
+
+
+{% block meta %} 
+<meta name="description" content="Text Translations: Instantly Translate Foreign Language Text toyour regional languages . You need an automatic text translator and to free with unlimited access – get it now! . Quick and easy-to-use text-translator!. Try Text Translator now"> 
+<meta name="keywords" content="text translator,text translator picture,text translator app,text translator camera,text translator font,text translator english to french,text translator english to malay,text translator english german,text translator online, text translation from german to english,text translation app,text translation english to arabic,text translation in urdu,text translation in hindi,text translation in english,text translation services,text translation from image,text translation"> 
+{% endblock  %}
+
+{% block google_ads %} <script data-ad-client="ca-pub-5341667575368596" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> {% endblock  %}
+
+
+{% block style %}
+#p {color:#9c9c9c;}
+#button{
+    width:100%;
+}
+{% endblock  %}
+
+
+
+{% block text %} active {% endblock %}
+{% block title %}Free Text Translator{% endblock  %}
+
+
+
+{% block content %}
+<div class="container">
+    <br>
+    <h1>Free Text Translator</h1>
+  <p style="color:9c9c9c;font-size:25px;">Translate your text in different languages, don't stop in the known languages</p><br>
+    <form action="/text-translator" method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6" class="form-control" style="font-size: 25px;">
+                <label for="from">Translate from </label>
+                <select name="from" id="from">
+                    <option value="en">English</option>
+                    <option value="hi">Hindi</option>
+                    <option value="es">Spanish</option>
+                    <option value="en">English</option>
+                    <option value="ar">Arabic</option>
+                    <option value="pt">Portuguese</option>
+                    <option value="bn">Bengali</option>
+                    <option value="ru">Russian</option>
+                    <option value="ja">Japanese</option>
+                    <option value="de">German</option>
+
+
+
+
+                    <option value="pa">Punjabi</option>
+                    <option value="jv">Javanese</option>
+                    <option value="ko">Korean</option>
+                    <option value="vi">Vietnamese</option>
+                    <option value="te">Telugu</option>
+                    <option value="mr">Marathi</option>
+                    <option value="ta">Tamil</option>
+                    <option value="fr">French</option>
+                    <option value="ur">Urdu</option>
+                    <option value="it">Italian</option>
+
+
+                    <option value="tr">Turkish</option>
+                    <option value="fa">Persian</option>
+                    <option value="gu">Gujarati</option>
+                    <option value="pl">Polish</option>
+                    <option value="uk">Ukrainian</option>
+                    <option value="ml">Malayalam</option>
+                    <option value="kn">Kannada</option>
+                    <option value="or">Oriya</option>
+                    <option value="my">Burmese</option>
+                    <option value="th">Thai</option>
+                </select>
+            </div>
+            <div class="col-md-6" class="form-control" style="font-size: 25px;color:#9c9c9c;">
+                <label for="to">Translate to </label>
+                <select name="to" id="to">
+                    <option value="en">English</option>
+                    <option value="zh">Chinese</option>
+                    <option value="hi">Hindi</option>
+                    <option value="es">Spanish</option>
+                    <option value="ar">Arabic</option>
+                    <option value="pt">Portuguese</option>
+                    <option value="bn">Bengali</option>
+                    <option value="ru">Russian</option>
+                    <option value="ja">Japanese</option>
+                    <option value="de">German</option>
+
+
+
+
+                    <option value="pa">Punjabi</option>
+                    <option value="jv">Javanese</option>
+                    <option value="ko">Korean</option>
+                    <option value="vi">Vietnamese</option>
+                    <option value="te">Telugu</option>
+                    <option value="mr">Marathi</option>
+                    <option value="ta">Tamil</option>
+                    <option value="fr">French</option>
+                    <option value="ur">Urdu</option>
+                    <option value="it">Italian</option>
+
+
+                    <option value="tr">Turkish</option>
+                    <option value="fa">Persian</option>
+                    <option value="gu">Gujarati</option>
+                    <option value="pl">Polish</option>
+                    <option value="uk">Ukrainian</option>
+                    <option value="ml">Malayalam</option>
+                    <option value="kn">Kannada</option>
+                    <option value="or">Oriya</option>
+                    <option value="my">Burmese</option>
+                    <option value="th">Thai</option>
+                </select>
+            </div>
+        </div>
+        <br>
+
+
+
+
+        <div class="row">
+            <div class="col-md-6">
+                {% if from_lang %}
+                <textarea class="form-control" style="font-size: 25px;color:#9c9c9c;" name="from_lang" id="from_lang"
+                    cols="30" rows="10" placeholder="Enter Text">{{from_lang}}</textarea>
+                {% else %}
+                <textarea class="form-control" style="font-size: 25px;color:#9c9c9c;" name="from_lang" id="from_lang"
+                    cols="30" rows="10" placeholder="Enter Text"></textarea>
+                {% endif %}
+            </div>
+
+
+
+
+
+            <div class="col-md-6">
+                {% if result %}
+                <textarea class="form-control" style="font-size: 25px;color:#9c9c9c;" cols="30" rows="10"
+                    placeholder="Translation">{{result}}</textarea>
+                {% else %}
+                <textarea class="form-control" style="font-size: 25px;color:#9c9c9c;" cols="30" rows="10"
+                    placeholder="Translation" disabled></textarea>
+                {% endif %}
+            </div>
+          
+        </div>
+
+
+
+
+<br>
+
+<input id="button" class="btn btn-dark" type="submit" value="Translate" style="font-size: 25px;"><br>
+</form>
+<br>
+
+<div class="row">
+
+      <div class="card">
+        <div class="card-body my-3">
+          <blockquote class="blockquote mb-0">
+
+
+            
+            <p id="p">Need to translate a non-English written email? Can’t understand the website a search result directed you to? Having trouble arranging travel plans overseas? Found the antique you’ve been looking for but the seller can’t communicate in English?</p>
+  
+          <br>
+<h3> You need an automatic text translator - grab it now for free</h3>
+<p id="p">Instantly understand foreign language text and also make your message understood in languages other than English. With CONFEP features you can automatically translate text, translate words or translate phrase whenever you want. That’s right. Full text translation, message translation, phrase translation, and sentence translation in 30 languages. Brought to you by CONFEP</p>
+
+
+
+
+
+<h3>Quick and easy-to-use!</h3>
+<p id="p">It takes a single click for CONFEP’s text translator to display your selected text translation within seconds. Simply select the text, phrase or sentence you want to translate and click. Your translation phrases display within seconds.</p>
+
+</blockquote>
+
+
+        </div>
+      </div>
+    <div class="container my-3">
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+
+</div>
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

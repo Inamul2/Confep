@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+
+{% block meta %} 
+<meta name="description" content="Free Online QR Code Generator to make your own QR Codes. Supports Dynamic Codes, Tracking, Analytics, Free text, vCards and more."> 
+<meta name="keywords" content="qr code generator,qr code generator free,qr code generator online,qr code generator kostenlos,qr code generator with logo,qr code generator google,qr code generator open source,qr code generator pdf,qr code generator software,qr code generator api,qr code generator app, qr code,qr code scanner,qr code erstellen,qr code scannen,qr code reader,qr code monkey,qr code generator online,qr code scanner android,qr code test,qr code decoder,qr code generator,qr code generator free"> 
+{% endblock  %}
+
+{% block google_ads %} <script data-ad-client="ca-pub-5341667575368596" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> {% endblock  %}
+
+
+{% block style %}
+  /* Facebook Section */
+#facebook {
+    {% comment %} background: #ee8c3a; {% endcomment %}
+    background-image: url("http://www.confep.in/static/qr.png");
+    background-repeat: no-repeat;
+    padding: 80px 0px;
+    text-align: center;
+    color: #fff;
+}
+#facebook h3 {
+    font-size: 36px;
+    font-weight: 400;
+    color: #fff;
+}
+#facebook p {
+    font-size: 15px;
+    font-style: italic;
+    padding: 0px;
+    margin: 25px 0px 40px;
+}
+#facebook form {
+    background: #fff;
+    padding: 6px 10px;
+    position: relative;
+    border-radius: 50px;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+#facebook form input[type="text"] {
+    border: 0;
+    padding: 4px 8px;
+    width: calc(100% - 100px);
+}
+#facebook form input[type="submit"] {
+    position: absolute;
+    top: 0;
+    right: -1px;
+    bottom: 0;
+    border: 0;
+    background: none;
+    font-size: 16px;
+    padding: 0 20px;
+    background: #000000;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 50px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+}
+#facebook form input[type="submit"]:hover {
+    opacity: 0.9;
+}
+#p {color:#9c9c9c;}
+{% endblock %}
+
+
+
+
+{% block generator %}active{% endblock  %}
+
+{% block title %}Free QR Code Generator{% endblock  %}
+
+{% block content %}
+<div class="my-3">
+<div class="row" style="margin-left: 0px;margin-right: 0px;">
+
+<!--  Form Section -->
+    <section id="facebook">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-4">
+                    <h1>Free QR Code Generator</h1>
+                    <p>Create your QR Code in a click</p>
+                </div>
+            </div>
+          <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <form action="/qr-code-generator" method="post">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        {% if link %}
+                        <input type="text" name="qrcode" id="qrcode" value="{{link}}" class="form-control">
+                        {% else %}
+                        <input type="text" name="qrcode" id="qrcode" placeholder="URL, Text or Number" class="form-control">
+                        {% endif %}
+                        <button type="submit" value="Download" class="btn btn-dark" style="border-radius: 30px;" class="form-control">Generate</button>
+                    </div>
+                    </form>
+
+                </div>
+          </div>
+        </div>
+    </section><!-- End Form Section-->
+</div>
+</div>
+<div class="container">
+<div class="row my-3">
+</div>
+
+
+
+<div class="row" style="display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;">
+  <div style="display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;">{{ svg|safe }}</div>
+
+</div>
+
+<div class="row">
+
+      <div class="card">
+        <div class="card-body my-3">
+          <blockquote class="blockquote mb-0">
+
+
+<h3>What is QR Code</h3>
+<p id="p"> QR Code is a two-dimensional version of the barcode, typically made up of black and white pixel patterns. Denso Wave, a Japanese subsidiary of the Toyota supplier Denso, developed them for marking components in order to accelerate logistics processes for their automobile production. Now, it has found its way into mobile marketing with the widespread adoption of smartphones. "QR" stands for "Quick Response", which refers to the instant access to the information hidden in the Code.</p>
+<h3>What are benefits of using QR Code ?</h3>
+
+<p id="p">QR Code are gaining popularity because of their versatility. You can use them to gather feedback to improve your products or services, increase customer engagement with images or videos, or even promote your business via events and coupons. All of these can be done with just a single scan!</p>
+
+
+<h3>How to use QR Code Generator?</h3>
+<p id="p"> 1. Fill the input field </p>
+<p id="p"> 2. click "Generate" button </p>
+<p id="p"> 3. QR Code will be Generated </p>
+
+
+
+
+
+
+</blockquote>
+
+
+        </div>
+
+    </div>
+  </div>
+
+
+<div class="container my-3">
+    </div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+{% endblock %}

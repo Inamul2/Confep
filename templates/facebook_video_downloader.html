@@ -1,0 +1,203 @@
+{% extends 'base.html' %}
+
+{% block meta %} 
+<meta name="description" content="Facebook Video Downloader Online, Download Facebook Videos and Save them directly from facebook watch to your computer or mobile for Free without any limit."> 
+<meta name="keywords" content="facebook video downloader,facebook video downloader apk,facebook video downloader app,facebook video downloader hd,facebook video downloader for pc,facebook video downloader for iphone,facebook video downloader extension,facebook video downloader private,facebook video downloader free,facebook video downloader apk 2020,facebook video downloader online,facebook video downloader chrome"> 
+{% endblock  %}
+
+{% block google_ads %} <script data-ad-client="ca-pub-5341667575368596" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> {% endblock  %}
+
+
+{% block style %}
+#p {color:#9c9c9c;}
+  /* Facebook Section */
+#facebook {
+    {% comment %} background: #ee8c3a; {% endcomment %}
+    background-image: url("http://www.confep.in/static/facebook.png");
+    background-repeat: no-repeat;
+    padding: 80px 0px;
+    text-align: center;
+    color: #fff;
+}
+#facebook h3 {
+    font-size: 36px;
+    font-weight: 400;
+    color: #fff;
+}
+#facebook p {
+    font-size: 15px;
+    font-style: italic;
+    padding: 0px;
+    margin: 25px 0px 40px;
+}
+#facebook form {
+    background: #fff;
+    padding: 6px 10px;
+    position: relative;
+    border-radius: 50px;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+#facebook form input[type="text"] {
+    border: 0;
+    padding: 4px 8px;
+    width: calc(100% - 100px);
+}
+#facebook form input[type="submit"] {
+    position: absolute;
+    top: 0;
+    right: -1px;
+    bottom: 0;
+    border: 0;
+    background: none;
+    font-size: 16px;
+    padding: 0 20px;
+    background: #000000;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 50px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+}
+#facebook form input[type="submit"]:hover {
+    opacity: 0.9;
+}
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+{% block facebook %}active{% endblock  %}
+
+{% block title %}Free Facebook Video Downloader{% endblock  %}
+
+{% block content %}
+<div class="my-3">
+<div class="row" style="margin-left: 0px;margin-right: 0px;">
+
+<div class="alert alert-danger" role="alert">
+  Facebook Video Downloader is not performing well, Our team is working to resolve the issue.
+</div>
+
+<!--  Form Section -->
+    <section id="facebook">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-4">
+                    <h1>Facebook Video Downloader</h1>
+                    <p>Download Facebook Videos on your Device by just providing the link</p>
+                </div>
+            </div>
+          <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <form action="/facebook-video-downloader" method="post">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        {% if link %}
+                        <input type="text" name="link" id="link" value="{{link}}" class="form-control">
+                        {% else %}
+                        <input type="text" name="link" id="link" placeholder="Facebook Video Link" class="form-control">
+                        {% endif %}
+                        <button type="submit" value="Download" class="btn btn-dark" style="border-radius: 30px;" class="form-control" disabled>Download</button>
+                    </div>
+                    </form>
+
+                </div>
+          </div>
+        </div>
+    </section><!-- End Form Section-->
+
+
+
+
+
+
+
+</div>
+</div>
+<div class="container">
+<div class="row my-3">
+</div>
+
+
+
+{% if embedlink %}
+<div class="row">
+
+
+
+<div class="embed-responsive embed-responsive-21by9">
+  <iframe class="embed-responsive-item" src="{{embedlink}}" height="600" width="100%" ></iframe>
+</div>
+
+
+<table class="table" style="width:100%;margin-top:30px;margin-bottom:50px;color:black;text-align:center;">
+  <tbody style="color:blue;">
+  <tr>
+    <td><a href="{{embedlink}}" target="new"><strong style="color:line;">Download</strong></a></td>
+  </tr>
+  </tbody>
+</table>
+
+
+</div>
+{% endif %}
+
+
+<div class="row">
+
+      <div class="card">
+        <div class="card-body my-3">
+          <blockquote class="blockquote mb-0">
+
+
+<h3>What is Facebook Downloader?</h3>
+<p id="p"> It is a simple online service for downloading any video content from the Facebook social media platform. With this tool, you can save any format videos - post, streaming live, story, from one second to five hours long to your PC, Mac, Android, or iPhone. All you need to do is paste a link to the content you would like to get.</p>
+
+<h3>Why does everybody need to use Facebook Downloader?</h3>
+<p id="p">1 - It’s fast and simple. It saves your time trying to find a good way to save Facebook content or screenshot it, editing your screenshots, and figuring out if the quality is any good.</p>
+<p id="p">2 - It’s reliable. This service saves the content you need in the best quality possible.</p>
+<p id="p">3 - It’s convenient. No one can save five years of profile content in just 10 minutes in one button. But the downloader can. Just try it out.</p>
+
+<h3>Can I save videos with this Facebook Video Downloader service?</h3>
+<p id="p">You can save any video from Facebook with this free Facebook Video Downloader tool. Get the best quality available with this Facebook Video downloader. Just paste a link to the content you’d like to get.</p>
+
+<h3>Can I use Facebook Downloader for PC?</h3>
+<p id="p">The Confep Facebook Video Downloader is a web service. So, you can use it on any device you prefer. Download videos and photos to your computer, Windows, Mac, Android, etc.</p>
+
+
+</blockquote>
+
+
+        </div>
+
+    </div>
+  </div>
+
+
+<div class="row my-3">
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

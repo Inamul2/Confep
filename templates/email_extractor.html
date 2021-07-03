@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% block meta %}
+<meta name="description" content="Email Extractor is a web-based application which allows user to extract email from a given paragraph. Email Extractor is very helpful for extracting email from a 10000 characters or more paragraph.>
+<meta name="keywords" content="email extractor, email extractor 1.4, email extractor 1.7, email extractor 1.6, email extractor online, email extractor pro, email extractor chrome extension, email extractor software, email extractor from website, email extractor 1.8, email extractor download">
+
+{% endblock  %}
+
+{% block google_ads %} <script data-ad-client="ca-pub-5341667575368596" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> {% endblock  %}
+
+
+{% block style %}
+#p {color:#9c9c9c;}
+#button{
+    width:100%;
+}
+{% endblock  %}
+
+
+
+{% block title %}Free Email Address Extractor{% endblock  %}
+
+{% block email %} active{% endblock  %}
+
+{% block content %}
+
+
+<div class="container my-3" id="div">
+
+  <h1>Free Email Address Extractor</h1>
+  <p style="color:9c9c9c;font-size:25px;">Online Tool for Email Extraction in a second</p><br>
+  <div class="row">
+
+
+
+      <div class="card">
+        <div class="card-body">
+        
+        {% if text == None %}
+
+          <blockquote class="blockquote mb-0">
+            <p >Paste Text Here</p>
+
+          </blockquote>
+          
+          <form action="/email-extractor" method="post">
+            {% csrf_token %}
+            <div class="input-group my-3">
+            <textarea class="form-control" style="font-size: 25px;color:#9c9c9c;" id="input" name="input" rows="10" placeholder="Paste the content here"></textarea>
+            </div>
+            <input id="button" class="btn btn-dark" type="submit" value="Extract Email" style="font-size: 25px;"><br>
+            <br>
+          </form>
+          <div class="alert alert-info" role="alert"><b>Note</b> : We do not share email address with anyone.</div>
+        {% else %} 
+
+          <blockquote class="blockquote mb-0">
+          {% if emails != 0 %}
+            <p >Extracted Emails : {{emails|length}}</p>
+            {% else %}
+               <p >Extracted Emails</p>   
+          {% endif %}  
+          </blockquote>
+           <textarea class="form-control my-3" style="font-size: 25px;color:#9c9c9c;" id="text" name="text" rows="10">{% for i in emails %}{{i}}
+{% endfor %}
+           </textarea>
+          <br> <div class="alert alert-info" role="alert"><b>Note</b> : We do not share email address with anyone.</div>
+
+        
+        {% endif %}
+        </div>
+
+    </div>
+
+  </div>
+  <br>
+  <br>
+
+
+
+
+
+  <div class="row">
+
+      <div class="card">
+        <div class="card-body my-3">
+          <blockquote class="blockquote mb-0">
+            <h3 >What is Email Extractor?</h3>
+            <p id="p">Email Extractor is a simple little tool that will help you find email addresses hidden in a content. Just copy the entire block of text and paste it in the above input box. All you have to do is click on the “Extract Email” button, it will find all the email addresses present in your input text. Any duplicate address will be ignored safely, as a final result, you get a unique list of all emails extracted.</p>
+            <br>
+
+
+            <h3>How Does Email Extractor Work?</h3>
+           <p id="p">Email Extractor is designed to automatically extract email addresses from the web and your local files, and compile them to a list eliminating duplicate email addresses.
+
+The program features a powerful engine, which makes Email Extractor the fastest email harvester. It utilizes the minimum of your computer’s resources and can run smoothly in the background.</p>
+            
+
+            <br>
+            <h3>Why do You need Email Extractor?</h3>
+            <p id="p"> A powerful Email Extractor is a must-have tool if you are dealing with internet marketing. It is evident that the more people you contact the more potential customers and correspondingly the more sales you’ll have. An email harvester application will help you to double or even triple your contact lists and therefore increase considerably your sales. Just imagine that you can boost your sales up to 30 % with few clicks of your mouse. It is a matter of several minutes.
+Email Extractor will raise your email marketing campaign to a new level.</p>
+         <br>
+<h3>Reasons why you should use of email extractors</h3>
+<ol>
+
+<li id="p">Basically, email extractors are programmed to harvest email address from the internet and other offline sources. Many websites and online forums contain email addresses which ordinarily, it will take hours and days to find a couple of them. This software is capable of searching the internet to obtain these websites within minutes and store them for the users to utilise email marketing or any other purpose. Email extractors on the market has differ in strength. There are some that can only find 50 email address within a minute from the internet. But powerful ones can find over 100 email addresses within 60 seconds.</li>
+<li id="p">Apart from email marketer, an employer can also make use of email extractor to find out email address used by employees or subscribers to send them emails. They can also use it to determine email addresses they have sent emails to. A network administrator can also purchase the software for the same purpose.</li>
+<li id="p">Sometimes businesses and individuals may have the need to refer to an email address or email addresses on their local area network. This can be a tedious and time consuming work to do without any software. But one can accomplish this task easily with an email extractor.</li>
+<li id="p">An email extractor is also used to scan not only the internet but also CD-ROM – and other external storage media –, files, hard drives, folders and the likes.</li>
+<li id="p">A good number of email extractor come with feature for verifying the authenticity of email addresses and finding out duplicated email address in a list.</li>
+<li id="p">A business can use an extractor to reach a potential buyer/customer. The user does not put much effort in getting to the potential buyer and this makes this software a time saver as far as email marketing is concerned.</li>
+   
+   </ol>
+          </blockquote>
+          <br>
+
+
+
+
+        </div>
+      </div>
+
+    
+  </div>
+
+
+
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,211 @@
+{% extends 'base.html' %}
+
+{% block meta %} 
+<meta name="description" content="Free URL shortener to create perfect URLs for your business. Confep Url Shortner helps you create and share branded links with custom domains at scale. ✓ Check it out and it's free and unlimited to use!> 
+<meta name="keywords" content="link shortener,link shortener free,link shortener google,link shortener custom,link shortener youtube,link shortener linkedin,link shortener twitter,link shortener online,link shortener bitly,link shortner,url shortener,url shortener free,url shortener google,url shortener open source,url shortener online,url shortener system design,url shortener custom,url shortener twitter,url shortener api,url shortener algorithm,url shortener bitly,url shortner"> 
+{% endblock  %}
+
+{% block google_ads %} <script data-ad-client="ca-pub-5341667575368596" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> {% endblock  %}
+
+
+{% block style %}
+  /* Facebook Section */
+#facebook {
+    {% comment %} background: #ee8c3a; {% endcomment %}
+    background-image: url("http://www.confep.in/static/URL.png");
+    background-repeat: no-repeat;
+    padding: 80px 0px;
+    text-align: center;
+    color: #fff;
+}
+#facebook h3 {
+    font-size: 36px;
+    font-weight: 400;
+    color: #fff;
+}
+#facebook p {
+    font-size: 15px;
+    font-style: italic;
+    padding: 0px;
+    margin: 25px 0px 40px;
+}
+#facebook form {
+    background: #fff;
+    padding: 6px 10px;
+    position: relative;
+    border-radius: 50px;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+#facebook form input[type="text"] {
+    border: 0;
+    padding: 4px 8px;
+    width: calc(100% - 100px);
+}
+#facebook form input[type="submit"] {
+    position: absolute;
+    top: 0;
+    right: -1px;
+    bottom: 0;
+    border: 0;
+    background: none;
+    font-size: 16px;
+    padding: 0 20px;
+    background: #000000;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 50px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+}
+#facebook form input[type="submit"]:hover {
+    opacity: 0.9;
+}
+#p {color:#9c9c9c;}
+{% endblock %}
+
+
+
+
+{% block link_shortner %}active{% endblock  %}
+
+{% block title %}Free URL Shortener{% endblock  %}
+
+
+{% block content %}
+
+
+
+<div class="my-3">
+<div class="row" style="margin-left: 0px;margin-right: 0px;">
+
+<!--  Form Section -->
+    <section id="facebook">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-4">
+                    <h1>Free URL Shortener</h1>
+                    <p>Shorten any URL with a click</p>
+                </div>
+            </div>
+          <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <form action="/url-shortener" method="post">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        {% if link %}
+                        <input type="text" name="link" id="link" value="{{link}}" class="form-control">
+                        {% else %}
+                        <input type="text" name="link" id="link" placeholder="Paste a URL to shorten it" class="form-control">
+                        {% endif %}
+                        <button type="submit" value="Download" class="btn btn-dark" style="border-radius: 30px;" class="form-control">Shorten</button>
+                    </div>
+                    </form>
+
+                </div>
+          </div>
+        </div>
+    </section><!-- End Form Section-->
+</div>
+</div>
+
+<div class="container">
+
+<div class="row my-3">
+</div>
+
+
+{% if shortlink %}
+
+<div class="row" style="text-align:center;">
+
+<h2>Shorten Link</h2>
+<input type="text" value="{{shortlink}}" id="myInput" class="form-control" style="font-size:25px;text-align:center;">
+<button onclick="myFunction()" class="form-control btn btn-dark" style="font-size:25px;color:#ee8c3a;">Copy text</button>
+<br>
+
+</div>
+
+{% endif %}
+
+
+
+
+
+
+<div class="row my-3">
+</div>
+
+
+
+
+
+
+
+<div class="row">
+
+      <div class="card">
+        <div class="card-body my-3">
+          <blockquote class="blockquote mb-0">
+
+
+<h3>What is a URL shortener?</h3>
+<p id="p">A URL shortener is an online tool that takes a long, hefty URL and provides a shortened URL that sends the user to the exact same spot.</p>
+
+<p id="p">URL shorteners help you create shorter, more aesthetic URLs, as well as benefit from those tracking and retargeting features.
+</p>
+
+
+<p id="p"> URL's carry your brand and connect your audience in ways that no other medium can. They're kind of a big deal.
+
+You’re about to start creating powerful links. Easier-to-manage links. Branded links. Bitly links.</p>
+
+<h3>5 Reasons Why Confep URL Shorteners Are Useful</h3>
+<p id="p">1. They make links more manageable</p>
+<p id="p">2. They can track and compile click data</p>
+<p id="p">3. They can be transformed into social media services</p>
+<p id="p">4. They can provide users useful features</p>
+<p id="p">5. They promote sharing</p>
+
+
+
+<p id="p">Using Confep URL shortener service can help you create cleaner, more user-friendly URLs and also track and analyze how those URLs perform. If you are sharing posts, get the best URL shortener for your blog.</p>
+
+
+
+</blockquote>
+
+
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+    <div class="container my-3">
+    </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+<script>
+function myFunction() {
+  var copyText = document.getElementById("myInput");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999)
+  document.execCommand("copy");
+  alert("Copied the text: " + copyText.value);
+}
+</script>
+
+
+
+{% endblock %}

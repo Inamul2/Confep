@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+{% block meta %} 
+<meta name="description" content="Confep IP address tool helps find the IP address of a website. Check your website IP addresses fast. Test Now!"> 
+<meta name="keywords" content="ip address of website,ip address of website cmd,ip address of website visitors,find ip address of website mac,show ip address of website,ip address of website lookup,log ip address of website visitors"> 
+{% endblock  %}
+
+{% block google_ads %} <script data-ad-client="ca-pub-5341667575368596" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> {% endblock  %}
+
+
+{% block style %}
+  /* Facebook Section */
+#facebook {
+    {% comment %} background: #ee8c3a; {% endcomment %}
+    background-image: url("http://www.confep.in/static/ip.png");
+    background-repeat: no-repeat;
+    padding: 80px 0px;
+    text-align: center;
+    color: #fff;
+}
+#facebook h3 {
+    font-size: 36px;
+    font-weight: 400;
+    color: #fff;
+}
+#facebook p {
+    font-size: 15px;
+    font-style: italic;
+    padding: 0px;
+    margin: 25px 0px 40px;
+}
+#facebook form {
+    background: #fff;
+    padding: 6px 10px;
+    position: relative;
+    border-radius: 50px;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+#facebook form input[type="text"] {
+    border: 0;
+    padding: 4px 8px;
+    width: calc(100% - 100px);
+}
+#facebook form input[type="submit"] {
+    position: absolute;
+    top: 0;
+    right: -1px;
+    bottom: 0;
+    border: 0;
+    background: none;
+    font-size: 16px;
+    padding: 0 20px;
+    background: #000000;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 50px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+}
+#facebook form input[type="submit"]:hover {
+    opacity: 0.9;
+}
+#p {color:#9c9c9c;}
+{% endblock %}
+
+
+{% block more %}active{% endblock  %}
+
+
+{% block title %}Free IP Address Finder{% endblock  %}
+
+{% block content %}
+
+
+<div class="my-3">
+<div class="row" style="margin-left: 0px;margin-right: 0px;">
+
+<!--  Form Section -->
+    <section id="facebook">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-4">
+                    <h1>Free IP Address Finder</h1>
+                    <p>Search Ip Address of any website with a click</p>
+                </div>
+            </div>
+          <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <form action="/ip-address-finder" method="post">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        {% if link %}
+                        <input type="text" name="link" id="link" value="{{link}}" class="form-control">
+                        {% else %}
+                        <input type="text" name="link" id="link" placeholder="Paste Website url" class="form-control">
+                        {% endif %}
+                        <button type="submit" value="Download" class="btn btn-dark" style="border-radius: 30px;" class="form-control">Search</button>
+                    </div>
+                    </form>
+
+                </div>
+          </div>
+        </div>
+    </section><!-- End Form Section-->
+</div>
+</div>
+
+<div class="container">
+
+<div class="row my-3">
+</div>
+
+
+{% if output %}
+
+<div class="row" style="text-align:center;">
+
+<h2>Ip Address Of the website</h2>
+<input type="text" value="{{output}}" id="myInput" class="form-control" style="font-size:25px;text-align:center;">
+<button onclick="myFunction()" class="form-control btn btn-dark" style="font-size:25px;color:#ee8c3a;">Copy text</button>
+<br>
+
+</div>
+
+{% endif %}
+
+<div class="row my-3">
+</div>
+
+
+
+
+
+
+<div class="row">
+
+      <div class="card">
+        <div class="card-body my-3">
+          <blockquote class="blockquote mb-0">
+
+
+
+<h3>Check your website IP addresses fast</h3>
+<p id="p">There are lots of ways to get your website IP addresses. You can use a command prompt (CMD) to conduct a ping or a traceroute, download an app to do it, or contact your hosting company and ask. But why? In the time you do any of that, you could have gotten your website IP address right here for free.</p>
+<p id="p">Confep free tool gets you both your IPv4 and IPv6 addresses.</p>
+<p id="p">You don’t need a separate tool to check both. Plug in your domain, such as confep.in, and click "Search for Ip Address". In a flash, you’ll have all of your website IP addresses.</p>
+
+
+
+
+</blockquote>
+
+
+        </div>
+      </div>
+
+
+    </div>
+
+
+    <div class="container my-3">
+    </div>
+
+
+
+
+
+
+</div>
+
+<script>
+function myFunction() {
+  var copyText = document.getElementById("myInput");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999)
+  document.execCommand("copy");
+  alert("Copied the text: " + copyText.value);
+}
+</script>
+
+
+
+
+
+
+{% endblock %}

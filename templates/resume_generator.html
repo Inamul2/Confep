@@ -1,0 +1,368 @@
+{% extends 'base.html' %}
+
+{% block meta %} 
+<meta name="description" content="Make a perfect resume in 2021 and get your dream job using the free resume generator. Personalize it. Get more interviews."> 
+<meta name="keywords" content="resume generator,resume generator online free,resume generator reddit,resume generator linkedin,resume generator for high school students,resume generator github,resume generator iitg,resume generator for students,resume generator python,resume generator for freshers,resume generator free,resume,resume meaning,resume template,resume format,resume samples,resume builder,resume genius,resume vs cv,resume examples,resume builder free,resume worded"> 
+{% endblock  %}
+
+
+{% block style %}
+form{
+  font-size: 25px;
+}
+{% endblock  %}
+
+{% block generator %}active{% endblock  %}
+
+{% block title %}Free Resume Generator{% endblock  %}
+
+{% block google_ads %} <script data-ad-client="ca-pub-5341667575368596" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> {% endblock  %}
+
+{% block content %}
+<div class="container">
+  <form class="row my-3" action="/resume-generator" target="_blank" method="post">
+    {% csrf_token %}
+    <h2>1. Personal Details</h2>
+    <div class="col-md-4">
+      <label for="name" class="form-label">Full Name</label>
+      <input type="text" id="name" name="name" style="font-size: 25px;color:#9c9c9c;" class="form-control"
+        placeholder="Your Full Name" required>
+    </div>
+    <div class="col-md-4">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" style="font-size: 25px;color:#9c9c9c;" class="form-control" id="email" name="email"
+        placeholder="example@confep.in" required>
+    </div>
+    <div class="col-md-4">
+      <label for="contact" class="form-label">Contact Number </label>
+      <input type="phno" class="form-control" id="contact" style="font-size: 25px;color:#9c9c9c;" name="contact"
+        placeholder="+91 9876543210" required>
+    </div>
+    <div class="col-md-6">
+      <label for="linkedin" class="form-label">LinkedIn</label>
+      <input type="url" class="form-control" id="linkedin" style="font-size: 25px;color:#9c9c9c;" name="linkedin"
+        placeholder="linkedin.com/in/example">
+    </div>
+    <div class="col-md-6">
+      <label for="github" class="form-label">Github</label>
+      <input type="url" class="form-control" id="github" style="font-size: 25px;color:#9c9c9c;" name="github"
+        placeholder="github.com/example">
+    </div>
+
+
+
+    <h2 class="my-3">2. Education Details</h2>
+    <h4> &#8594; Secondary (High School) </h4>
+    <div class="col-md-6">
+      <label for="school_name" class="form-label">School Name</label>
+      <input type="text" id="school_name" name="school_name" style="font-size: 25px;color:#9c9c9c;" class="form-control"
+        placeholder="School Name" required>
+    </div>
+    <div class="col-md-6">
+      <label for="score_secondary" class="form-label">Score(%)</label>
+      <input type="text" style="font-size: 25px;color:#9c9c9c;" class="form-control" id="score_secondary"
+        name="score_secondary" placeholder="84.54" required>
+    </div>
+    <div class="col-md-6">
+      <label for="secondary_institution" class="form-label">Institution </label>
+      <input type="text" class="form-control" id="secondary_institution" style="font-size: 25px;color:#9c9c9c;"
+        name="secondary_institution" placeholder="ICSE/CBSE/State Board" required>
+    </div>
+    <div class="col-md-6">
+      <label for="pass_secondary" class="form-label">Year of Passing</label>
+      <input type="text" class="form-control" id="pass_secondary" style="font-size: 25px;color:#9c9c9c;"
+        name="pass_secondary" placeholder="2016" required>
+    </div>
+
+
+    <h4 class="my-3"> &#8594; Senior Secondary </h4>
+    <div class="col-md-6">
+      <label for="school_name_senior" class="form-label">School Name</label>
+      <input type="text" id="school_name_senior" name="school_name_senior" style="font-size: 25px;color:#9c9c9c;"
+        class="form-control" placeholder="School Name" required>
+    </div>
+    <div class="col-md-6">
+      <label for="score_secondary_senior" class="form-label">Score(%)</label>
+      <input type="text" style="font-size: 25px;color:#9c9c9c;" class="form-control" id="score_secondary_senior"
+        name="score_secondary_senior" placeholder="84.54" required>
+    </div>
+    <div class="col-md-6">
+      <label for="senior_secondary_institution" class="form-label">Institution </label>
+      <input type="text" class="form-control" id="senior_secondary_institution" style="font-size: 25px;color:#9c9c9c;"
+        name="senior_secondary_institution" placeholder="ISC/CBSE/State Board" required>
+    </div>
+    <div class="col-md-6">
+      <label for="pass_secondary_senior" class="form-label">Year of Passing</label>
+      <input type="text" class="form-control" id="pass_secondary_senior" style="font-size: 25px;color:#9c9c9c;"
+        name="pass_secondary_senior" placeholder="2018" required>
+    </div>
+
+
+
+    <h4 class="my-3"> &#8594; Graduation </h4>
+    <div class="col-md-4">
+      <label for="course" class="form-label">Course Name</label>
+      <input type="text" id="course" name="course" style="font-size: 25px;color:#9c9c9c;" class="form-control"
+        placeholder="Bachelor of Technology (CSE)" required>
+    </div>
+    <div class="col-md-4">
+      <label for="cgpa" class="form-label">CGPA (if appearing leave it blank)</label>
+      <input type="text" style="font-size: 25px;color:#9c9c9c;" class="form-control" id="cgpa" name="cgpa">
+    </div>
+    
+    <div class="col-md-4">
+      <label for="timespan" class="form-label">Time Span</label>
+      <input type="text" class="form-control" id="timespan" style="font-size: 25px;color:#9c9c9c;" name="timespan"
+        placeholder="2017-2021" required>
+    </div>
+    <div class="col-md-6">
+      <label for="college" class="form-label">College Name </label>
+      <input type="text" class="form-control" id="college" style="font-size: 25px;color:#9c9c9c;" name="college"
+        required>
+    </div>
+    <div class="col-md-6">
+      <label for="university" class="form-label">University</label>
+      <input type="text" class="form-control" id="university" style="font-size: 25px;color:#9c9c9c;" name="university"
+        required>
+    </div>
+
+
+    <h2 class="my-3">3. Projects Details</h2>
+    <section>
+      <div id="add_table_1">
+        <h4 class="my-3"> &#8594; Project Details 1</h4>
+        <div class="row">
+          <div class="col-md-6">
+            <label for="project_name" class="form-label">Project Name</label>
+            <input type="text" id="project_name" name="project_name" style="font-size: 25px;color:#9c9c9c;"
+              class="form-control" placeholder="Confep">
+          </div>
+          <div class="col-md-6">
+            <label for="project_url" class="form-label">Project Url</label>
+            <input type="url" id="project_url" name="project_url" style="font-size: 25px;color:#9c9c9c;"
+              class="form-control" placeholder="confep.in">
+          </div>
+        </div>
+        <div class="col-md-12">
+          <label for="project_details" class="form-label">Project Details</label>
+          <textarea name="project_details" id="project_details" class="form-control" cols="30"
+            placeholder="Details about the Project" style="font-size: 25px;color:#9c9c9c;"
+            rows="2"></textarea>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+      <div class="col-md-4">
+        <button type="button" id="add_row_1" class="btn btn-dark" style="width:100%;text-size:25px;">Add Project</button>
+      </div>
+      </div>
+    </section>
+
+    <h2 class="my-3">4. Experience Details</h2>
+    <section>
+      <div id="add_table_2">
+        <h4 class="my-3"> &#8594; Experience Details 1</h4>
+        <div class="row">
+          <div class="col-md-4">
+      <label for="experience_name" class="form-label"> Job Title</label>
+      <input type="text" id="experience_name" name="experience_name" style="font-size: 25px;color:#9c9c9c;"
+        class="form-control" placeholder="Web Developer">
+    </div>
+    <div class="col-md-4">
+      <label for="experience_company" class="form-label">Company</label>
+      <input type="text" id="experience_company" name="experience_company" style="font-size: 25px;color:#9c9c9c;"
+        class="form-control" placeholder="confep.in">
+    </div>
+    <div class="col-md-4">
+      <label for="experience_time" class="form-label">Time Span</label>
+      <input type="text" class="form-control" id="experience_time" name="experience_time"
+        style="font-size: 25px;color:#9c9c9c;" placeholder="Feb,2021 - Mar,2021">
+    </div>
+        </div>
+        <div class="col-md-12">
+          <label for="experience_details" class="form-label">Project Details</label>
+          <textarea name="experience_details" id="experience_details" class="form-control" cols="30"
+            placeholder="Summarise your experience" style="font-size: 25px;color:#9c9c9c;"
+            rows="2"></textarea>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+      <div class="col-md-4">
+        <button type="button" id="add_row_2" class="btn btn-dark" style="width:100%;text-size:25px;">Add Experience</button>
+      </div>
+      </div>
+    </section>
+
+
+
+    <h2 class="my-3">5. Skills</h2>
+    <div class="col-md-12">
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Skills</th>
+    </tr>
+  </thead>
+  <tbody id="add_table_skills">
+    <tr>
+      <td scope="row">1</td>
+      <td><input class="form-control" type="text" id="skill_1" name="skill_1" required></td>
+    </tr>
+  </tbody>
+</table>
+<button type="button" id="add_row_skill" class="btn btn-dark">Add Skills</button></div>
+
+    <h2 class="my-3">6. Achievements</h2>
+    <div class="col-md-12">
+     <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Achievements</th>
+      <th scope="col">Certificate link</th>
+    </tr>
+  </thead>
+  <tbody id="add_table_achievement">
+    <tr>
+      <td scope="row">1</td>
+      <td><input class="form-control" type="text" id="achievement_1" name="achievement_1" required></td>
+      <td><input class="form-control" type="url" id="achievement_url_1" name="achievement_url_1" ></td>
+    </tr>
+  </tbody>
+</table>
+<button type="button" id="add_row_achievement" class="btn btn-dark">Add Achievements</button></div>
+
+    <h2 class="my-3">7. Languages</h2>
+    <div class="col-md-12">
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Languages</th>
+    </tr>
+  </thead>
+  <tbody id="add_table_language">
+    <tr>
+      <td scope="row">1</td>
+      <td><input class="form-control" type="text" id="language_1" name="language_1" required></td>
+    </tr>
+  </tbody>
+</table>
+<button type="button" id="add_row_language" class="btn btn-dark">Add Language</button></div>
+
+
+    <div class="col-12">
+      <input id="app-submit" type="submit" class="btn btn-dark my-3" style="font-size: 25px;width:100%;"
+        value="{% if credit_card %}Get Started{% else %}Generate{% endif %}" />
+
+    </div>
+  </form>
+
+
+</div>
+
+{% endblock %}
+
+
+{% block script %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+  var id_1 = 2
+  $('#add_row_1').click(function () {
+    if (id_1 <= 3) {
+      $(`
+  <h4 class="my-3"> &#8594; Project Details ${id_1}</h4>
+  <div class="row">
+  <div class="col-md-6">
+    <label for="project_name_${id_1}" class="form-label">Project Name</label>
+    <input type="text" id="project_name_${id_1}" name="project_name_${id_1}" style="font-size: 25px;color:#9c9c9c;" class="form-control" placeholder="Confep">
+  </div>
+  <div class="col-md-6">
+    <label for="project_url_${id_1}" class="form-label">Project Url</label>
+    <input type="url" id="project_url_${id_1}" name="project_url_${id_1}" style="font-size: 25px;color:#9c9c9c;" class="form-control" placeholder="confep.in" >
+  </div>
+  </div>
+  <div class="col-md-12">
+    <label for="project_details_${id_1}" class="form-label">Project Details</label>
+    <textarea name="project_details_${id_1}" id="project_details_${id_1}" class="form-control" cols="30" placeholder="Details about the Project" style="font-size: 25px;color:#9c9c9c;" rows="2"></textarea>
+  </div>`).appendTo('#add_table_1');
+      id_1++
+    }
+  });
+
+
+
+  var id_2 = 2
+  $('#add_row_2').click(function () {
+    if (id_2 <= 3) {
+      $(`
+<h4 class="my-3"> &#8594; Experience Details 1</h4>
+        <div class="row">
+          <div class="col-md-4">
+      <label for="experience_name_${id_2}" class="form-label"> Job Title</label>
+      <input type="text" id="experience_name_${id_2}" name="experience_name_${id_2}" style="font-size: 25px;color:#9c9c9c;"
+        class="form-control" placeholder="Web Developer">
+    </div>
+    <div class="col-md-4">
+      <label for="experience_company_${id_2}" class="form-label">Company</label>
+      <input type="text" id="experience_company_${id_2}" name="experience_company_${id_2}" style="font-size: 25px;color:#9c9c9c;"
+        class="form-control" placeholder="confep.in">
+    </div>
+    <div class="col-md-4">
+      <label for="experience_time_${id_2}" class="form-label">Time Span</label>
+      <input type="text" class="form-control" id="experience_time_${id_2}" name="experience_time_${id_2}"
+        style="font-size: 25px;color:#9c9c9c;" placeholder="Feb,2021 - Mar,2021">
+    </div>
+        </div>
+        <div class="col-md-12">
+          <label for="experience_details_${id_2}" class="form-label">Project Details</label>
+          <textarea name="experience_details_${id_2}" id="experience_details_${id_2}" class="form-control" cols="30"
+            placeholder="Summarise your experience" style="font-size: 25px;color:#9c9c9c;"
+            rows="2"></textarea>
+        </div>
+      </div>
+`).appendTo('#add_table_2');
+      id_2++
+    }
+  });
+
+
+id_3 = 2
+$('#add_row_skill').click(function() {
+    if (id_3 <=10){
+  $(`<tr>
+      <td scope="row">${id_3}</td>
+      <td><input class="form-control" type="text" id="skill_${id_3}" name="skill_${id_3}" required></td>
+    </tr>`).appendTo('#add_table_skills');
+  id_3++
+}});
+
+
+
+id_4 = 2
+$('#add_row_achievement').click(function() {
+    if (id_4 <=10){
+  $(`<tr>
+      <td scope="row">${id_4}</td>
+      <td><input class="form-control" type="text" id="achievement_${id_4}" name="achievement_${id_4}" required></td>
+      <td><input class="form-control" type="url" id="achievement_url_${id_4}" name="achievement_url_${id_4}" ></td>
+    </tr>`).appendTo('#add_table_achievement');
+  id_4++
+}});
+
+
+id_5 = 2
+$('#add_row_language').click(function() {
+    if (id_5 <=10){
+  $(`<tr>
+      <td scope="row">${id_5}</td>
+      <td><input class="form-control" type="text" id="language_${id_5}" name="language_${id_5}" required></td>
+    </tr>`).appendTo('#add_table_language');
+  id_5++
+}});
+
+
+</script>
+{% endblock script %}
